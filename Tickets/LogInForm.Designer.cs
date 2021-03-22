@@ -47,6 +47,7 @@ namespace Tickets
             this.tbUser.Name = "tbUser";
             this.tbUser.Size = new System.Drawing.Size(220, 22);
             this.tbUser.TabIndex = 0;
+            this.tbUser.Text = "aoctavian";
             this.tbUser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LogInForm_KeyDown);
             // 
             // tbPassword
@@ -57,6 +58,7 @@ namespace Tickets
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(220, 22);
             this.tbPassword.TabIndex = 1;
+            this.tbPassword.Text = "aoctavian";
             this.tbPassword.UseSystemPasswordChar = true;
             this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LogInForm_KeyDown);
             // 
@@ -133,6 +135,7 @@ namespace Tickets
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LogIn";
+            this.Load += new System.EventHandler(this.LogInForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

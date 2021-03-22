@@ -22,6 +22,11 @@ namespace Tickets
             InitializeComponent();
         }
 
+        private void LogInForm_Load(object sender, EventArgs e)
+        {
+            TryLogIn();
+        }
+
         private void LogInForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
