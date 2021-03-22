@@ -38,9 +38,11 @@ namespace Tickets
             this.lbTicketStatus = new System.Windows.Forms.Label();
             this.lbTicketType = new System.Windows.Forms.Label();
             this.lbServiceType = new System.Windows.Forms.Label();
-            this.lbCustomer = new System.Windows.Forms.Label();
+            this.lbCustomerName = new System.Windows.Forms.Label();
             this.lbCreatedAt = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbClosedAt = new System.Windows.Forms.Label();
+            this.lbClosedAtText = new System.Windows.Forms.Label();
             this.overlayPanel = new Tickets.CustomControls.TransparentPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +54,7 @@ namespace Tickets
             this.lbSubject.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSubject.Location = new System.Drawing.Point(0, 0);
-            this.lbSubject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbSubject.Margin = new System.Windows.Forms.Padding(4);
             this.lbSubject.Name = "lbSubject";
             this.lbSubject.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.lbSubject.Size = new System.Drawing.Size(625, 28);
@@ -150,17 +152,17 @@ namespace Tickets
             this.lbServiceType.TabIndex = 8;
             this.lbServiceType.Text = "Feature request";
             // 
-            // lbCustomer
+            // lbCustomerName
             // 
-            this.lbCustomer.AutoSize = true;
-            this.lbCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbCustomer.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lbCustomer.Location = new System.Drawing.Point(70, 130);
-            this.lbCustomer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbCustomer.Name = "lbCustomer";
-            this.lbCustomer.Size = new System.Drawing.Size(70, 16);
-            this.lbCustomer.TabIndex = 9;
-            this.lbCustomer.Text = "Facebook";
+            this.lbCustomerName.AutoSize = true;
+            this.lbCustomerName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbCustomerName.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lbCustomerName.Location = new System.Drawing.Point(70, 130);
+            this.lbCustomerName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbCustomerName.Name = "lbCustomerName";
+            this.lbCustomerName.Size = new System.Drawing.Size(70, 16);
+            this.lbCustomerName.TabIndex = 9;
+            this.lbCustomerName.Text = "Facebook";
             // 
             // lbCreatedAt
             // 
@@ -179,11 +181,38 @@ namespace Tickets
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(0, 28);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(625, 1);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
+            // 
+            // lbClosedAt
+            // 
+            this.lbClosedAt.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbClosedAt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbClosedAt.ForeColor = System.Drawing.Color.Firebrick;
+            this.lbClosedAt.Location = new System.Drawing.Point(410, 159);
+            this.lbClosedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbClosedAt.Name = "lbClosedAt";
+            this.lbClosedAt.Size = new System.Drawing.Size(205, 16);
+            this.lbClosedAt.TabIndex = 14;
+            this.lbClosedAt.Text = "label10gv fedg fdg dfg df";
+            this.lbClosedAt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbClosedAt.Visible = false;
+            // 
+            // lbClosedAtText
+            // 
+            this.lbClosedAtText.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbClosedAtText.AutoSize = true;
+            this.lbClosedAtText.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbClosedAtText.Location = new System.Drawing.Point(546, 139);
+            this.lbClosedAtText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbClosedAtText.Name = "lbClosedAtText";
+            this.lbClosedAtText.Size = new System.Drawing.Size(69, 16);
+            this.lbClosedAtText.TabIndex = 13;
+            this.lbClosedAtText.Text = "Closed At:";
+            this.lbClosedAtText.Visible = false;
             // 
             // overlayPanel
             // 
@@ -191,12 +220,10 @@ namespace Tickets
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.overlayPanel.Location = new System.Drawing.Point(-2, -2);
-            this.overlayPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.overlayPanel.MaximumSize = new System.Drawing.Size(930, 192);
-            this.overlayPanel.MinimumSize = new System.Drawing.Size(200, 192);
+            this.overlayPanel.Margin = new System.Windows.Forms.Padding(0);
             this.overlayPanel.Name = "overlayPanel";
             this.overlayPanel.Opacity = 0;
-            this.overlayPanel.Size = new System.Drawing.Size(630, 192);
+            this.overlayPanel.Size = new System.Drawing.Size(629, 191);
             this.overlayPanel.TabIndex = 12;
             this.overlayPanel.Click += new System.EventHandler(this.Ticket_Click);
             this.overlayPanel.MouseEnter += new System.EventHandler(this.Ticket_MouseEnter);
@@ -208,10 +235,12 @@ namespace Tickets
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.lbClosedAt);
+            this.Controls.Add(this.lbClosedAtText);
             this.Controls.Add(this.overlayPanel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbCreatedAt);
-            this.Controls.Add(this.lbCustomer);
+            this.Controls.Add(this.lbCustomerName);
             this.Controls.Add(this.lbServiceType);
             this.Controls.Add(this.lbTicketType);
             this.Controls.Add(this.lbTicketStatus);
@@ -243,9 +272,11 @@ namespace Tickets
         private System.Windows.Forms.Label lbTicketStatus;
         private System.Windows.Forms.Label lbTicketType;
         private System.Windows.Forms.Label lbServiceType;
-        private System.Windows.Forms.Label lbCustomer;
+        private System.Windows.Forms.Label lbCustomerName;
         private System.Windows.Forms.Label lbCreatedAt;
         private System.Windows.Forms.PictureBox pictureBox1;
         private CustomControls.TransparentPanel overlayPanel;
+        private System.Windows.Forms.Label lbClosedAt;
+        private System.Windows.Forms.Label lbClosedAtText;
     }
 }

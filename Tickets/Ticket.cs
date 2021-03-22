@@ -17,6 +17,6 @@ namespace Tickets
         public string Priority { get; set; }
         public string CustomerName { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime ClosedAt { get; set; }
+        public DateTime? ClosedAt { get; set; }
     }
 }
