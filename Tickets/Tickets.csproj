@@ -50,6 +50,7 @@
     <Compile Include="CustomControls\TransparentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DBHelper.cs" />
     <Compile Include="LogInForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -28,14 +28,20 @@ namespace Tickets
             lbTicketType.Text = ticket.Type;
             lbServiceType.Text = ticket.ServiceType;
             lbCustomerName.Text = ticket.CustomerName;
-            lbCreatedAt.Text = ticket.CreatedAt.ToString("dd.MM.yyyy - HH:mm");
+            lbCreatedAt.Text = ticket.CreatedAt.ToString("d MMM yyyy - h:mm tt");
             if (!IsNotClosed(ticket))
             {
                 this.BackColor = Color.Gainsboro;
                 lbClosedAtText.Visible = true;
-                lbClosedAt.Text = ((DateTime)ticket.ClosedAt).ToString("dd.MM.yyyy - HH:mm");
+                lbClosedAt.Text = ((DateTime)ticket.ClosedAt).ToString("d MMM yyyy - h:mm tt");
                 lbClosedAt.Visible = true;
+                overlayPanel.Cursor = Cursor.Current;
             }
+        }
+
+        public void RemoveTicketPanel()
+        {
+            this.Parent.Controls.Remove(this);
         }
 
         private void Ticket_Click(object sender, EventArgs e)

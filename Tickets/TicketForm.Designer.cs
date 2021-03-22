@@ -34,14 +34,14 @@ namespace Tickets
             this.rtbSubject = new System.Windows.Forms.RichTextBox();
             this.rtbDescription = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.lbStatus = new System.Windows.Forms.ComboBox();
-            this.lbType = new System.Windows.Forms.ComboBox();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.cbType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.lbServiceType = new System.Windows.Forms.ComboBox();
+            this.cbServiceType = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.lbPriority = new System.Windows.Forms.ComboBox();
+            this.cbPriority = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.lbCustomerName = new System.Windows.Forms.TextBox();
+            this.tbCustomerName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.lbCreatedAtText = new System.Windows.Forms.Label();
             this.lbCreatedAt = new System.Windows.Forms.Label();
@@ -103,24 +103,24 @@ namespace Tickets
             this.label3.TabIndex = 4;
             this.label3.Text = "Status:";
             // 
-            // lbStatus
+            // cbStatus
             // 
-            this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbStatus.Location = new System.Drawing.Point(69, 365);
-            this.lbStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(202, 24);
-            this.lbStatus.TabIndex = 5;
+            this.cbStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbStatus.Location = new System.Drawing.Point(69, 365);
+            this.cbStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(202, 24);
+            this.cbStatus.TabIndex = 5;
             // 
-            // lbType
+            // cbType
             // 
-            this.lbType.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbType.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbType.Location = new System.Drawing.Point(64, 397);
-            this.lbType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbType.Name = "lbType";
-            this.lbType.Size = new System.Drawing.Size(202, 24);
-            this.lbType.TabIndex = 7;
+            this.cbType.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbType.ForeColor = System.Drawing.Color.OliveDrab;
+            this.cbType.Location = new System.Drawing.Point(64, 397);
+            this.cbType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cbType.Name = "cbType";
+            this.cbType.Size = new System.Drawing.Size(202, 24);
+            this.cbType.TabIndex = 7;
             // 
             // label5
             // 
@@ -133,15 +133,15 @@ namespace Tickets
             this.label5.TabIndex = 6;
             this.label5.Text = "Type:";
             // 
-            // lbServiceType
+            // cbServiceType
             // 
-            this.lbServiceType.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbServiceType.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lbServiceType.Location = new System.Drawing.Point(113, 429);
-            this.lbServiceType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbServiceType.Name = "lbServiceType";
-            this.lbServiceType.Size = new System.Drawing.Size(202, 24);
-            this.lbServiceType.TabIndex = 9;
+            this.cbServiceType.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbServiceType.ForeColor = System.Drawing.Color.DarkOrange;
+            this.cbServiceType.Location = new System.Drawing.Point(113, 429);
+            this.cbServiceType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cbServiceType.Name = "cbServiceType";
+            this.cbServiceType.Size = new System.Drawing.Size(202, 24);
+            this.cbServiceType.TabIndex = 9;
             // 
             // label7
             // 
@@ -154,15 +154,15 @@ namespace Tickets
             this.label7.TabIndex = 8;
             this.label7.Text = "Service Type:";
             // 
-            // lbPriority
+            // cbPriority
             // 
-            this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbPriority.ForeColor = System.Drawing.Color.Firebrick;
-            this.lbPriority.Location = new System.Drawing.Point(73, 461);
-            this.lbPriority.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbPriority.Name = "lbPriority";
-            this.lbPriority.Size = new System.Drawing.Size(202, 24);
-            this.lbPriority.TabIndex = 11;
+            this.cbPriority.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbPriority.ForeColor = System.Drawing.Color.Firebrick;
+            this.cbPriority.Location = new System.Drawing.Point(73, 461);
+            this.cbPriority.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cbPriority.Name = "cbPriority";
+            this.cbPriority.Size = new System.Drawing.Size(202, 24);
+            this.cbPriority.TabIndex = 11;
             // 
             // label9
             // 
@@ -175,15 +175,15 @@ namespace Tickets
             this.label9.TabIndex = 10;
             this.label9.Text = "Priority:";
             // 
-            // lbCustomerName
+            // tbCustomerName
             // 
-            this.lbCustomerName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbCustomerName.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lbCustomerName.Location = new System.Drawing.Point(89, 493);
-            this.lbCustomerName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbCustomerName.Name = "lbCustomerName";
-            this.lbCustomerName.Size = new System.Drawing.Size(202, 22);
-            this.lbCustomerName.TabIndex = 13;
+            this.tbCustomerName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbCustomerName.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.tbCustomerName.Location = new System.Drawing.Point(89, 493);
+            this.tbCustomerName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.tbCustomerName.Name = "tbCustomerName";
+            this.tbCustomerName.Size = new System.Drawing.Size(339, 22);
+            this.tbCustomerName.TabIndex = 13;
             // 
             // label11
             // 
@@ -270,15 +270,15 @@ namespace Tickets
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.lbCreatedAt);
             this.Controls.Add(this.lbCreatedAtText);
-            this.Controls.Add(this.lbCustomerName);
+            this.Controls.Add(this.tbCustomerName);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.lbPriority);
+            this.Controls.Add(this.cbPriority);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.lbServiceType);
+            this.Controls.Add(this.cbServiceType);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.lbType);
+            this.Controls.Add(this.cbType);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.lbStatus);
+            this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.rtbDescription);
             this.Controls.Add(this.rtbSubject);
@@ -301,14 +301,14 @@ namespace Tickets
         private System.Windows.Forms.RichTextBox rtbSubject;
         private System.Windows.Forms.RichTextBox rtbDescription;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox lbStatus;
-        private System.Windows.Forms.ComboBox lbType;
+        private System.Windows.Forms.ComboBox cbStatus;
+        private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox lbServiceType;
+        private System.Windows.Forms.ComboBox cbServiceType;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox lbPriority;
+        private System.Windows.Forms.ComboBox cbPriority;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox lbCustomerName;
+        private System.Windows.Forms.TextBox tbCustomerName;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lbCreatedAtText;
         private System.Windows.Forms.Label lbCreatedAt;

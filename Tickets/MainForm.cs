@@ -14,7 +14,7 @@ namespace Tickets
 {
     public partial class MainForm : Form
     {
-        public int Id { get; set; }
+        public static int Id { get; set; }
         public string User { get; set; }
         List<Ticket> TicketsList { get; set; }
 
@@ -104,13 +104,13 @@ namespace Tickets
 
                     foreach (var ticket in TicketsList)
                     {
-                        ShowTicketPanel(ticket);
+                        AddTicketPanel(ticket);
                     }
                 }));
             }).Start();
         }
 
-        private void ShowTicketPanel(Ticket ticket)
+        private void AddTicketPanel(Ticket ticket)
         {
             TicketControl ticketControl = new TicketControl(ticket)
             {

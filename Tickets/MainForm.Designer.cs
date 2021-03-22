@@ -69,7 +69,7 @@ namespace Tickets
             this.layoutPanel.Name = "layoutPanel";
             this.layoutPanel.RowCount = 1;
             this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutPanel.Size = new System.Drawing.Size(882, 0);
+            this.layoutPanel.Size = new System.Drawing.Size(800, 0);
             this.layoutPanel.TabIndex = 3;
             // 
             // panelTickets
@@ -78,10 +78,10 @@ namespace Tickets
             this.panelTickets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTickets.Controls.Add(this.layoutPanel);
             this.panelTickets.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTickets.Location = new System.Drawing.Point(0, 0);
+            this.panelTickets.Location = new System.Drawing.Point(82, 0);
             this.panelTickets.Name = "panelTickets";
             this.panelTickets.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.panelTickets.Size = new System.Drawing.Size(884, 561);
+            this.panelTickets.Size = new System.Drawing.Size(802, 561);
             this.panelTickets.TabIndex = 4;
             // 
             // toolStrip
@@ -110,11 +110,12 @@ namespace Tickets
             this.toolStripButton7.BackColor = System.Drawing.Color.Gainsboro;
             this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton7.Enabled = false;
+            this.toolStripButton7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Size = new System.Drawing.Size(75, 19);
-            this.toolStripButton7.Text = "View";
+            this.toolStripButton7.Text = "View Tickets";
             // 
             // btnShowAll
             // 
@@ -164,6 +165,7 @@ namespace Tickets
             this.toolStripButton5.BackColor = System.Drawing.Color.Gainsboro;
             this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton5.Enabled = false;
+            this.toolStripButton5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";

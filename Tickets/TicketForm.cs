@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -39,31 +40,62 @@ namespace Tickets
 
             rtbSubject.Text = TicketControl.Ticket.Subject;
             rtbDescription.Text = TicketControl.Ticket.Description;
-            lbStatus.Text = TicketControl.Ticket.Status;
-            lbStatus.Enabled = false;
-            lbType.Text = TicketControl.Ticket.Type;
-            lbType.Enabled = false;
-            lbServiceType.Text = TicketControl.Ticket.ServiceType;
-            lbServiceType.Enabled = false;
-            lbPriority.Text = TicketControl.Ticket.Priority;
-            lbPriority.Enabled = false;
-            lbCustomerName.Text = TicketControl.Ticket.CustomerName;
-            lbCustomerName.ReadOnly = true;
-            lbCreatedAt.Text = TicketControl.Ticket.CreatedAt.ToString("dd.MM.yyyy - HH:mm");
+            cbStatus.Text = TicketControl.Ticket.Status;
+            cbStatus.Enabled = false;
+            cbType.Text = TicketControl.Ticket.Type;
+            cbType.Enabled = false;
+            cbServiceType.Text = TicketControl.Ticket.ServiceType;
+            cbServiceType.Enabled = false;
+            cbPriority.Text = TicketControl.Ticket.Priority;
+            cbPriority.Enabled = false;
+            tbCustomerName.Text = TicketControl.Ticket.CustomerName;
+            tbCustomerName.ReadOnly = true;
+            lbCreatedAt.Text = TicketControl.Ticket.CreatedAt.ToString("d MMM yyyy - h:mm tt");
 
             lbCreatedAtText.Visible = lbCreatedAt.Visible = btnCloseTicket.Visible = true;
             btnSubmit.Text = "Apply changes";
         }
 
-        private void LoadForNewTicket()
+        private async void LoadForNewTicket()
         {
             FormType = NEW_TICKET;
 
             //TODO Load stored procedures
+
+            SqlConnection connection = new SqlConnection("Data Source=OCTAVIAN;Initial Catalog=Tickets;Integrated Security=True;");
+            try
+            {
+                await connection.OpenAsync();
+            }
+            catch
+            {
+                MessageBox.Show("Cannot connect to database", "Database down", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            await ReadStoredProcedures(connection, "GetTicketStatus", cbStatus);
+            await ReadStoredProcedures(connection, "GetTicketType", cbType);
+            await ReadStoredProcedures(connection, "GetTicketPriority", cbPriority);
+            await ReadStoredProcedures(connection, "GetTicketServiceType", cbServiceType);
+            connection.Close();
+        }
+
+        private async Task ReadStoredProcedures(SqlConnection connection, string procedureName, ComboBox item)
+        {
+            SqlCommand command = new SqlCommand(procedureName, connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            SqlDataReader dr = await command.ExecuteReaderAsync();
+
+            while (dr.Read())
+            {
+                item.Items.Add(dr[0].ToString());
+            }
+            dr.Close();
         }
 
         private void BtnSubmit_Click(object sender, EventArgs e)
-        {
+        {   
             switch (FormType)
             {
                 case NEW_TICKET:
@@ -71,21 +103,21 @@ namespace Tickets
                     {
                         Subject = rtbSubject.Text,
                         Description = rtbDescription.Text,
-                        Status = lbStatus.Text,
-                        Type = lbType.Text,
-                        ServiceType = lbServiceType.Text,
-                        Priority = lbPriority.Text,
-                        CustomerName = lbCustomerName.Text,
+                        Status = cbStatus.Text,
+                        Type = cbType.Text,
+                        ServiceType = cbServiceType.Text,
+                        Priority = cbPriority.Text,
+                        CustomerName = tbCustomerName.Text,
                         CreatedAt = DateTime.Now,
                         ClosedAt = null
                     };
                     DialogResult = DialogResult.OK;
-                    this.Close();
+                    InsertTicket(Ticket);
                     break;
                 case EDIT_TICKET:
                     TicketControl.Ticket.Subject = rtbSubject.Text;
                     TicketControl.Ticket.Description = rtbDescription.Text;
-                    TicketControl.FillTicket(TicketControl.Ticket);
+                    UpdateTicket();
                     break;
             }
         }
@@ -101,13 +133,27 @@ namespace Tickets
             {
                 case DialogResult.Yes:
                     TicketControl.Ticket.ClosedAt = DateTime.Now;
-                    TicketControl.FillTicket(TicketControl.Ticket);
                     this.Close();
+                    UpdateTicket();
+                    TicketControl.RemoveTicketPanel();
                     break;
                 case DialogResult.No:
                 case DialogResult.Cancel:
                     break;
             }
+        }
+
+        private async void UpdateTicket()
+        {
+            TicketControl.FillTicket(TicketControl.Ticket);
+            await DBHelper.UpdateTicket(TicketControl.Ticket);
+            this.Close();
+        }
+
+        private async void InsertTicket(Ticket ticket)
+        {
+            await DBHelper.InsertTicket(ticket);
+            this.Close();
         }
     }
 }
