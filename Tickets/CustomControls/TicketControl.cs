@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tickets.Model;
 
 namespace Tickets
 {
@@ -49,7 +50,7 @@ namespace Tickets
             if (IsNotClosed(Ticket))
             {
                 var tf = new TicketForm(this);
-                tf.Show();
+                tf.ShowDialog();
             }
         }
 

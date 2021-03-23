@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tickets.Data;
+using Tickets.Model;
 
 namespace Tickets
 {
@@ -19,9 +21,12 @@ namespace Tickets
         TicketControl TicketControl { get; set; }
         public Ticket Ticket { get; set; }
 
+        ITicketRepository TicketsRepo;
+
         public TicketForm(TicketControl ticketControl) //edit ticket constructor
         {
             InitializeComponent();
+            TicketsRepo = new TicketRepository(new AppDbContext());
 
             TicketControl = ticketControl;
             LoadForEditing(ticketControl);
@@ -30,6 +35,7 @@ namespace Tickets
         public TicketForm() //new ticket constructor
         {
             InitializeComponent();
+            TicketsRepo = new TicketRepository(new AppDbContext());
 
             LoadForNewTicket();
         }
@@ -60,38 +66,10 @@ namespace Tickets
         {
             FormType = NEW_TICKET;
 
-            //TODO Load stored procedures
-
-            SqlConnection connection = new SqlConnection("Data Source=OCTAVIAN;Initial Catalog=Tickets;Integrated Security=True;");
-            try
-            {
-                await connection.OpenAsync();
-            }
-            catch
-            {
-                MessageBox.Show("Cannot connect to database", "Database down", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            await ReadStoredProcedures(connection, "GetTicketStatus", cbStatus);
-            await ReadStoredProcedures(connection, "GetTicketType", cbType);
-            await ReadStoredProcedures(connection, "GetTicketPriority", cbPriority);
-            await ReadStoredProcedures(connection, "GetTicketServiceType", cbServiceType);
-            connection.Close();
-        }
-
-        private async Task ReadStoredProcedures(SqlConnection connection, string procedureName, ComboBox item)
-        {
-            SqlCommand command = new SqlCommand(procedureName, connection)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-            SqlDataReader dr = await command.ExecuteReaderAsync();
-
-            while (dr.Read())
-            {
-                item.Items.Add(dr[0].ToString());
-            }
-            dr.Close();
+            cbStatus.DataSource = await TicketsRepo.ReadStoredProcedureAsync("GetTicketStatus"); cbStatus.Text = "";
+            cbType.DataSource = await TicketsRepo.ReadStoredProcedureAsync("GetTicketType"); cbType.Text = "";
+            cbPriority.DataSource = await TicketsRepo.ReadStoredProcedureAsync("GetTicketPriority"); cbPriority.Text = "";
+            cbServiceType.DataSource = await TicketsRepo.ReadStoredProcedureAsync("GetTicketServiceType"); cbServiceType.Text = "";
         }
 
         private void BtnSubmit_Click(object sender, EventArgs e)
@@ -133,7 +111,6 @@ namespace Tickets
             {
                 case DialogResult.Yes:
                     TicketControl.Ticket.ClosedAt = DateTime.Now;
-                    this.Close();
                     UpdateTicket();
                     TicketControl.RemoveTicketPanel();
                     break;
@@ -146,13 +123,13 @@ namespace Tickets
         private async void UpdateTicket()
         {
             TicketControl.FillTicket(TicketControl.Ticket);
-            await DBHelper.UpdateTicket(TicketControl.Ticket);
+            await TicketsRepo.UpdateAsync(TicketControl.Ticket);
             this.Close();
         }
 
         private async void InsertTicket(Ticket ticket)
         {
-            await DBHelper.InsertTicket(ticket);
+            await TicketsRepo.InsertByUserAsync(ticket, MainForm.MyAccount.Id);
             this.Close();
         }
     }

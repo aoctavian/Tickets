@@ -7,24 +7,28 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tickets.Data;
+using Tickets.Model;
 
 namespace Tickets
 {
     public partial class LogInForm : Form
     {
-        public int Id { get; set; }
-        public string User { get; set; }
+        public Account MyAccount { get; set; }
+        IAccountRepository AccountsRepo { get; set; }
 
         public LogInForm()
         {
             InitializeComponent();
+            AccountsRepo = new AccountRepository(new AppDbContext());
         }
 
         private void LogInForm_Load(object sender, EventArgs e)
         {
-            TryLogIn();
+            //TryLogIn();
         }
 
         private void LogInForm_KeyDown(object sender, KeyEventArgs e)
@@ -44,7 +48,11 @@ namespace Tickets
         {
             if (!string.IsNullOrEmpty(tbUser.Text) && !string.IsNullOrEmpty(tbPassword.Text))
             {
-                LogIn();
+                loading.Visible = true;
+                new Thread(() =>
+                {
+                    LogIn();
+                }).Start();
             }
             else
             {
@@ -54,37 +62,22 @@ namespace Tickets
 
         private async void LogIn()
         {
-            loading.Visible = true;
-            SqlConnection connection = new SqlConnection("Data Source=OCTAVIAN;Initial Catalog=Tickets;Integrated Security=True;");
-            try
+            Account dbAccount;
+            if ((dbAccount = await AccountsRepo.IsAccountValidAsync(tbUser.Text, tbPassword.Text)) != null)
             {
-                await connection.OpenAsync();
-            }
-            catch
-            {
-                loading.Visible = false;
-                MessageBox.Show("Cannot connect to database", "Database down", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            SqlCommand command = new SqlCommand($"select * from [account] where [User]='{tbUser.Text}' and [Password] = '{tbPassword.Text}'", connection);
-            SqlDataReader dr = await command.ExecuteReaderAsync();
-            if (dr.Read())
-            {
-                Id = Convert.ToInt32(dr[0]);
-                User = dr[4].ToString();
-                dr.Close();
-
+                MyAccount = dbAccount;
+                Console.WriteLine(MyAccount.Id);
                 DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
                 loading.Visible = false;
-                MessageBox.Show("Incorrect user or password. Please try again.", "Invalid account", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tbUser.Focus();
                 tbUser.SelectAll();
+                MessageBox.Show("Incorrect user or password. Please try again.", "Invalid account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            connection.Close();
         }
     }
 }

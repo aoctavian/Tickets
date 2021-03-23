@@ -59,8 +59,6 @@ namespace Tickets
             this.lbSubject.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.lbSubject.Size = new System.Drawing.Size(625, 28);
             this.lbSubject.TabIndex = 0;
-            this.lbSubject.Text = "[MFC431LO20] DTC 985613 not triggered jfkldsjkl fjdklsjfklds jfkljgjkhrjk jkfehwj" +
-    "k jhfwekjfh ewjkhfjkehw fhewjk hkwejhf jkefwh wejkfh fhjkewfh jkweh fhjkweh fwe";
             // 
             // label1
             // 
@@ -124,9 +122,8 @@ namespace Tickets
             this.lbTicketStatus.Location = new System.Drawing.Point(90, 46);
             this.lbTicketStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTicketStatus.Name = "lbTicketStatus";
-            this.lbTicketStatus.Size = new System.Drawing.Size(35, 16);
+            this.lbTicketStatus.Size = new System.Drawing.Size(0, 16);
             this.lbTicketStatus.TabIndex = 6;
-            this.lbTicketStatus.Text = "New";
             // 
             // lbTicketType
             // 
@@ -136,9 +133,8 @@ namespace Tickets
             this.lbTicketType.Location = new System.Drawing.Point(85, 74);
             this.lbTicketType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTicketType.Name = "lbTicketType";
-            this.lbTicketType.Size = new System.Drawing.Size(45, 16);
+            this.lbTicketType.Size = new System.Drawing.Size(0, 16);
             this.lbTicketType.TabIndex = 7;
-            this.lbTicketType.Text = "label7";
             // 
             // lbServiceType
             // 
@@ -148,9 +144,8 @@ namespace Tickets
             this.lbServiceType.Location = new System.Drawing.Point(94, 102);
             this.lbServiceType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbServiceType.Name = "lbServiceType";
-            this.lbServiceType.Size = new System.Drawing.Size(102, 16);
+            this.lbServiceType.Size = new System.Drawing.Size(0, 16);
             this.lbServiceType.TabIndex = 8;
-            this.lbServiceType.Text = "Feature request";
             // 
             // lbCustomerName
             // 
@@ -160,9 +155,8 @@ namespace Tickets
             this.lbCustomerName.Location = new System.Drawing.Point(70, 130);
             this.lbCustomerName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCustomerName.Name = "lbCustomerName";
-            this.lbCustomerName.Size = new System.Drawing.Size(70, 16);
+            this.lbCustomerName.Size = new System.Drawing.Size(0, 16);
             this.lbCustomerName.TabIndex = 9;
-            this.lbCustomerName.Text = "Facebook";
             // 
             // lbCreatedAt
             // 
@@ -171,9 +165,8 @@ namespace Tickets
             this.lbCreatedAt.Location = new System.Drawing.Point(76, 159);
             this.lbCreatedAt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCreatedAt.Name = "lbCreatedAt";
-            this.lbCreatedAt.Size = new System.Drawing.Size(52, 16);
+            this.lbCreatedAt.Size = new System.Drawing.Size(0, 16);
             this.lbCreatedAt.TabIndex = 10;
-            this.lbCreatedAt.Text = "label10";
             // 
             // pictureBox1
             // 
@@ -197,7 +190,6 @@ namespace Tickets
             this.lbClosedAt.Name = "lbClosedAt";
             this.lbClosedAt.Size = new System.Drawing.Size(205, 16);
             this.lbClosedAt.TabIndex = 14;
-            this.lbClosedAt.Text = "label10gv fedg fdg dfg df";
             this.lbClosedAt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbClosedAt.Visible = false;
             // 

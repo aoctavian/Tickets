@@ -69,7 +69,7 @@ namespace Tickets
             this.layoutPanel.Name = "layoutPanel";
             this.layoutPanel.RowCount = 1;
             this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutPanel.Size = new System.Drawing.Size(800, 0);
+            this.layoutPanel.Size = new System.Drawing.Size(882, 0);
             this.layoutPanel.TabIndex = 3;
             // 
             // panelTickets
@@ -78,11 +78,12 @@ namespace Tickets
             this.panelTickets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTickets.Controls.Add(this.layoutPanel);
             this.panelTickets.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTickets.Location = new System.Drawing.Point(82, 0);
+            this.panelTickets.Location = new System.Drawing.Point(0, 0);
             this.panelTickets.Name = "panelTickets";
             this.panelTickets.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.panelTickets.Size = new System.Drawing.Size(802, 561);
+            this.panelTickets.Size = new System.Drawing.Size(884, 561);
             this.panelTickets.TabIndex = 4;
+            this.panelTickets.Visible = false;
             // 
             // toolStrip
             // 

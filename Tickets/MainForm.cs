@@ -9,19 +9,22 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tickets.Data;
+using Tickets.Model;
 
 namespace Tickets
 {
     public partial class MainForm : Form
     {
-        public static int Id { get; set; }
-        public string User { get; set; }
+        public static Account MyAccount { get; set; }
         List<Ticket> TicketsList { get; set; }
+        ITicketRepository TicketsRepo { get; set; }
 
         public MainForm()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+            TicketsRepo = new TicketRepository(new AppDbContext());
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -36,7 +39,7 @@ namespace Tickets
 
         private void EnableFormData()
         {
-            layoutPanel.Visible = true;
+            panelTickets.Visible = true;
             toolStrip.Visible = true;
         }
 
@@ -46,10 +49,9 @@ namespace Tickets
             {
                 if (LIF.ShowDialog() == DialogResult.OK)
                 {
-                    Id = LIF.Id;
-                    User = LIF.User;
+                    MyAccount = LIF.MyAccount;
                     EnableFormData();
-                    await ReadTickets(Id);
+                    await ReadTickets(MyAccount.Id);
                     ShowTickets(TicketsList.FindAll(t => t.ClosedAt == null));
                 }
             }
@@ -57,41 +59,7 @@ namespace Tickets
 
         private async Task ReadTickets(int userId)
         {
-            TicketsList = new List<Ticket>();
-
-            SqlConnection connection = new SqlConnection("Data Source=OCTAVIAN;Initial Catalog=Tickets;Integrated Security=True;");
-            try
-            {
-                await connection.OpenAsync();
-            }
-            catch
-            {
-                MessageBox.Show("Cannot connect to database", "Database down", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            SqlCommand command = new SqlCommand($"select * from [Ticket] t join (select [IdTicket] from [UserTickets] where [IdUser]='{userId}') ut on ut.IdTicket = t.Id order by [CreatedAt] desc", connection);
-            SqlDataReader dr = await command.ExecuteReaderAsync();
-
-            while (dr.Read())
-            {
-                Ticket ticket = new Ticket()
-                {
-                    Id = Convert.ToInt32(dr[0]),
-                    Subject = dr[1].ToString(),
-                    Description = dr[2].ToString(),
-                    Status = dr[3].ToString(),
-                    Type = dr[4].ToString(),
-                    ServiceType = dr[5].ToString(),
-                    Priority = dr[6].ToString(),
-                    CustomerName = dr[7].ToString(),
-                    CreatedAt = DateTime.Parse(dr[8].ToString())
-                };
-                if (dr[9].ToString() == "")
-                    ticket.ClosedAt = null;
-                else
-                    ticket.ClosedAt = DateTime.Parse(dr[9].ToString());
-                TicketsList.Add(ticket);
-            }
+            TicketsList = await TicketsRepo.GetAllTicketsForUserAsync(userId);
         }
 
         private void ShowTickets(List<Ticket> TicketsList)
@@ -154,10 +122,9 @@ namespace Tickets
             {
                 if (TF.ShowDialog() == DialogResult.OK)
                 {
-                    Ticket ticket = TF.Ticket;
-                    TicketsList.Insert(0, ticket);
+                    TicketsList.Insert(0, TF.Ticket);
                     if (btnShowAll.Checked || btnShowOpened.Checked)
-                        InsertTicketPanelAt0(ticket);
+                        InsertTicketPanelAt0(TF.Ticket);
                 }
             }
         }
